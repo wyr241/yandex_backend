@@ -12,9 +12,9 @@ import java.util.Set;
 public class ItemValidationService {
 
     public boolean isValid(List<Item> items) {
-        Set<String> ids = new HashSet<String>();
-        for (Item item: items) {
-            if(ids.contains(item.getId())) return false;
+        Set<String> ids = new HashSet<>();
+        for (Item item : items) {
+            if (ids.contains(item.getId())) return false;
             else ids.add(item.getId());
 
             if (!isValid(item)) return false;
@@ -23,14 +23,10 @@ public class ItemValidationService {
     }
 
     private boolean isValid(Item item) {
-        // implement here
-        if(item.getId() == null) return false;
-        if(item.getType() == NodeType.FOLDER){
-            if(item.getUrl() != null) return false;
-            if(item.getSize() != null) return false;
+        if (item.getType() == NodeType.FOLDER) {
+            if (item.getUrl() != null || item.getSize() != null) return false;
         } else if (item.getType() == NodeType.FILE) {
-            if(item.getUrl().length() <= 255) return false;
-            if(item.getSize() <= 0) return false;
+            if (item.getUrl().length() <= 255 || item.getSize() <= 0) return false;
         }
         return true;
     }
