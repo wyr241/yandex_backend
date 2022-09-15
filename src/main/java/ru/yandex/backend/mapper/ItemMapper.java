@@ -2,6 +2,7 @@ package ru.yandex.backend.mapper;
 
 import org.springframework.stereotype.Component;
 import ru.yandex.backend.domain.ItemEntity;
+import ru.yandex.backend.dto.GetItemResponse;
 import ru.yandex.backend.dto.Item;
 
 @Component
@@ -16,4 +17,15 @@ public class ItemMapper {
 
         return itemEntity;
     }
+
+    public GetItemResponse mapItemToGetItemResponse(ItemEntity itemEntity) {
+        GetItemResponse getItemResponse = new GetItemResponse();
+        getItemResponse.setId(itemEntity.getId());
+        getItemResponse.setUrl(itemEntity.getUrl());
+        getItemResponse.setType(itemEntity.getType());
+        getItemResponse.setSize(itemEntity.getSize());
+
+        return getItemResponse;
+    }
+
 }

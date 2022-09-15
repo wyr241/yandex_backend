@@ -19,6 +19,6 @@ public class ItemValidationService {
     private boolean isValid(Item item) {
         // implement here
 
-        return false;
+        return true;
     }
 }
