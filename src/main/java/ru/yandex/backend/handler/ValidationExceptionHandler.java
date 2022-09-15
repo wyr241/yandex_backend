@@ -1,4 +1,4 @@
-package ru.yandex.backend.controller;
+package ru.yandex.backend.handler;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -16,8 +16,12 @@ import java.util.LinkedHashMap;
 @RestControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
-                                                                  HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request
+    ) {
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("code", HttpStatus.BAD_REQUEST);
         params.put("message", ex.getMessage());
